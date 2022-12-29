@@ -29,6 +29,20 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Install dependencies
+      run: |
+        cd freecodecamp_testing
+        npm ci
+    - name: Build the app
+      run: |
+        cd freecodecamp_testing
+        npm run build
+    - name: Run component tests
+      run: |
+        cd freecodecamp_testing
+        npm run test
+    - name: Start the app
+      run: |
+        cd freecodecamp_testing
+        npm run start &
+        npx wait-on --timeout 60000
