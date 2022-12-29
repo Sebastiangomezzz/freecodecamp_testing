@@ -31,18 +31,14 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: |
-        cd freecodecamp_testing
         npm ci
     - name: Build the app
       run: |
-        cd freecodecamp_testing
         npm run build
     - name: Run component tests
       run: |
-        cd freecodecamp_testing
         npm run test
     - name: Start the app
       run: |
-        cd freecodecamp_testing
         npm run start &
         npx wait-on --timeout 60000
